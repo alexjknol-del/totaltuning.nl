@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h1>Contact</h1>
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="wrap prose">
+    <p>Vragen over een artikel, een tip, een correctie of een idee voor een onderwerp zijn welkom. Total Tuning is per e-mail bereikbaar en leest elk bericht.</p>
+
+    <div class="mailcard">
+      <span class="lbl">E-mail</span>
+      <p class="addr"><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      <a class="btn btn-primary" href="mailto:{{ site.email }}">Stuur een e-mail <span class="arr">&rarr;</span></a>
+    </div>
+
+    <p>Een reactie volgt zo snel als mogelijk. Voor een partnervoorstel staat meer uitleg op de <a href="/partners/">partnerpagina</a>.</p>
+  </div>
+</section>
+
+{% endblock %}

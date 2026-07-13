@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% if page_title %}<title>{{ page_title }} | {{ site.name }}</title>
+{% else %}<title>{{ site.name }} | {{ site.tagline }}</title>{% endif %}
+<meta name="description" content="{{ meta_description }}">
+{% if canonical %}<link rel="canonical" href="{{ site.base_url }}{{ canonical }}">{% endif %}
+<meta name="theme-color" content="#101216">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{% if page_title %}{{ page_title }}{% else %}{{ site.name }}{% endif %}">
+<meta property="og:description" content="{{ meta_description }}">
+{% if canonical %}<meta property="og:url" content="{{ site.base_url }}{{ canonical }}">{% endif %}
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Naar hoofdinhoud</a>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href="/" aria-label="{{ site.name }} home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+          <path d="M2 21 L9 11 H23 L30 21" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M2 21 H30" stroke="currentColor" stroke-width="2.4"/>
+          <circle cx="10" cy="21" r="3" fill="#101216" stroke="currentColor" stroke-width="2.4"/>
+          <circle cx="22" cy="21" r="3" fill="#101216" stroke="currentColor" stroke-width="2.4"/>
+        </svg>
+      </span>
+      <span class="brand-text">Total <span class="brand-dash">Tuning</span></span>
+    </a>
+
+    <input type="checkbox" id="navtoggle" class="navtoggle">
+    <label for="navtoggle" class="navbtn" aria-label="Menu openen">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="site-nav" aria-label="Hoofdmenu">
+      <ul>
+        {% for item in nav %}
+        <li><a href="{{ item.url }}"{% if canonical == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <span class="foot-name">Total Tuning</span>
+      <p class="foot-tag">{{ site.tagline }}. Onafhankelijke uitleg en achtergrond over het aanpassen van auto's.</p>
+    </div>
+    <div class="foot-col">
+      <h2>Magazine</h2>
+      <ul>
+        <li><a href="/nieuws/">Nieuws</a></li>
+        <li><a href="/over/">Over het platform</a></li>
+        <li><a href="/partners/">Partners</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h2>Onderwerpen</h2>
+      <ul>
+        {% for cat in categories %}
+        <li><a href="/nieuws/#{{ cat|lower }}">{{ cat }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h2>Contact</h2>
+      <ul>
+        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bar">
+    <span>&copy; {{ now_year }} Total Tuning</span>
+    <ul class="foot-legal">
+      {% for item in footer_legal %}
+      <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow">Nieuws</p>
+    <h1>Artikelen</h1>
+  </div>
+</section>
+
+<div class="specstrip">
+  <ul>
+    {% for cat in categories %}
+    <li>0{{ loop.index }}<b><a href="#{{ cat|lower }}" style="color:inherit">{{ cat }}</a></b></li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% for group in groups %}
+<section class="section{% if loop.index is divisibleby 2 %} section--alt{% endif %}" id="{{ group.slug }}">
+  <div class="wrap">
+    <div class="head-row">
+      <h2>{{ group.name }}</h2>
+    </div>
+    <div class="cards">
+      {% for a in group.articles %}
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat">{{ a.category }}</span>
+          <span>{{ a.date_nl }}</span>
+        </div>
+        <div class="card-body">
+          <h3><a href="{{ a.url }}">{{ a.title }}</a></h3>
+          <p>{{ a.excerpt }}</p>
+          <div class="card-foot"><span>Leestijd {{ a.read_minutes }} min</span></div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+{% endblock %}

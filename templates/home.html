@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Carstyling &amp; cartuning · magazine</p>
+    <h1>Auto's beter<br>maken, <span class="accent">uitgelegd.</span></h1>
+    <p class="hero-lead">Total Tuning is een onafhankelijk magazine over carstyling en cartuning. Geen verkooppraat, maar uitleg over wat onderdelen doen, waar verschillen zitten en hoe een auto verstandig wordt aangepakt.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/nieuws/">Lees de artikelen <span class="arr">&rarr;</span></a>
+      <a class="btn btn-ghost" href="/over/">Over het platform</a>
+    </div>
+  </div>
+</section>
+
+<div class="specstrip">
+  <ul>
+    <li>Onderwerp<b>Styling &amp; tuning</b></li>
+    <li>Insteek<b>Onafhankelijk</b></li>
+    <li>Register<b>Gewoon Nederlands</b></li>
+    <li>Doel<b>Begrijpelijke uitleg</b></li>
+  </ul>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="head-row">
+      <h2>Nieuwste artikelen</h2>
+      <a class="more" href="/nieuws/">Alle artikelen &rarr;</a>
+    </div>
+    <div class="cards">
+      {% for a in latest %}
+      <article class="card">
+        <div class="card-top">
+          <span class="card-cat">{{ a.category }}</span>
+          <span>{{ a.date_nl }}</span>
+        </div>
+        <div class="card-body">
+          <h3><a href="{{ a.url }}">{{ a.title }}</a></h3>
+          <p>{{ a.excerpt }}</p>
+          <div class="card-foot">
+            <span>Leestijd {{ a.read_minutes }} min</span>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Onderwerpen</p>
+      <h2>Waar het over gaat</h2>
+      <p>De artikelen zijn verdeeld over de onderdelen waar styling en tuning meestal beginnen.</p>
+    </div>
+    <div class="topics">
+      {% for cat in categories %}
+      <a class="topic" href="/nieuws/#{{ cat|lower }}">
+        <span class="num">{{ "%02d"|format(loop.index) }}</span>
+        <span class="name">{{ cat }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Onderdelen bestellen</p>
+      <h2>Waar de redactie onderdelen haalt</h2>
+      <p>Voor wie na het lezen aan de slag wil: dit zijn de twee Nederlandse webshops die het magazine als beste beoordeelt voor styling- en tuningonderdelen.</p>
+    </div>
+    <div class="shops">
+      <div class="shop">
+        <h3>Carstyle.nl</h3>
+        <p>Sterk in exterieur, verlichting en accessoires. Veel pasvorm per model en automerk, met eigen import en scherpe prijzen.</p>
+        <a class="shoplink" href="https://www.carstyle.nl" target="_blank" rel="noopener">Naar Carstyle.nl <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="shop">
+        <h3>Extreme-Carstyling.nl</h3>
+        <p>Specialist in onderstel, uitlaat en prestatieonderdelen. Verlagingsveren, demping en tuningmerken voor wie verder gaat dan alleen het uiterlijk.</p>
+        <a class="shoplink" href="https://www.extreme-carstyling.nl" target="_blank" rel="noopener">Naar Extreme-Carstyling.nl <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

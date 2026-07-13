@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<article>
+<section class="article-head">
+  <div class="wrap">
+    <a class="backlink" href="/nieuws/">&larr; Alle artikelen</a>
+    <h1>{{ article.title }}</h1>
+    <div class="article-meta">
+      <span class="cat">{{ article.category }}</span>
+      <span>{{ article.date_nl }}</span>
+      <span>Leestijd {{ article.read_minutes }} min</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-body">
+  <div class="wrap prose">
+    {{ article.html|safe }}
+  </div>
+</section>
+</article>
+
+{% if related %}
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="head-row"><h2>Meer lezen</h2><a class="more" href="/nieuws/">Alle artikelen &rarr;</a></div>
+    <div class="cards">
+      {% for a in related %}
+      <article class="card">
+        <div class="card-top"><span class="card-cat">{{ a.category }}</span><span>{{ a.date_nl }}</span></div>
+        <div class="card-body">
+          <h3><a href="{{ a.url }}">{{ a.title }}</a></h3>
+          <p>{{ a.excerpt }}</p>
+          <div class="card-foot"><span>Leestijd {{ a.read_minutes }} min</span></div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
